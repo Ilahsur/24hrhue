@@ -1,52 +1,45 @@
 //40.7128° N, 74.0059° W - NYC
+//v9zQY-HEs7uhgWb3Etg2qwxKEV7kP-XwqMNh8mPs - username
 
-// you can do this with http or https:
 var http = require('http');
-var express = require('express');     // include express.js
+var express = require('express');     
 var app = express();  
+var result = '';  
+var kuchbhi = '';
+var sunrise;
+var somename;
 
 app.use(express.static('public'));
 
-// app.get('/', function (req, res) {
-//   res.send('Hello World!')
-// })
 
-// app.listen(3000, function () {
-//   console.log('Example app listening on port 3000!')
-// })
-
-/*
- set up the options for the request.
- the full URL in this case is:
- http://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400
- https://dweet.io:443/get/latest/dweet/for/equable-men
-*/
 var options = {
   host: 'api.sunrise-sunset.org',
-  //port: 8080,
   path: '/json?lat=40.7127837&lng=-74.0059413'
 };
 
-/*
-	the callback function to be run when the response comes in.
-	this callback assumes a chunked response, with several 'data'
-	events and one final 'end' response.
-*/
 function callback(response) {
-  var result = '';		// string to hold the response
-
-  // as each chunk comes in, add it to the result string:
-  response.on('data', function (data) {
+  	response.on('data', function (data) {
     result += data;
+    kuchbhi = JSON.parse(result);
   });
 
-  // when the final chunk comes in, print it out:
   response.on('end', function () {
-    console.log(result);
+    somename = kuchbhi['results'];
+    sunrise = somename['sunrise'];
+    //console.log(result);
+    console.log(somename['sunrise']);
   });
 }
 
 var request = http.request(options, callback);
 request.end();
+//console.log(somename);
+
+var d = new Date(); 
+//console.log(d.getHours()+" "+d.getMinutes()+" "+d.getSeconds()+" "); 
+var offset = new Date().getTimezoneOffset();
+
+// var content = JSON.stringify(result);
+// console.log(content);
 
 

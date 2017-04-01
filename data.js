@@ -13,7 +13,7 @@ var postData =JSON.stringify({
 
 var options = {
   host: 'api.sunrise-sunset.org/',
-  //port: 443,
+  //port: 8080,
   path: 'json?lat=40.7127837&lng=-74.0059413',
 	method: 'POST',
 	headers: {

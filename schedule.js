@@ -10,8 +10,8 @@ var d = new Date();
 var dstr = d.toTimeString();
 //console.log(dstr);
 
-var host = "128.122.151.182",
-    username = "v9zQY-HEs7uhgWb3Etg2qwxKEV7kP-XwqMNh8mPs",
+var host = "",
+    username = "",
     api = new HueApi(host, username),
     mySchedule1,
     mySchedule2,
